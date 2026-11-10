@@ -1,0 +1,46 @@
+# HTTPS deployment: Commander behind Caddy with automatic Let's Encrypt certs.
+#
+#   cp deploy/.env.example deploy/.env    # fill in DOMAIN and the token hash
+#   docker compose -f deploy/docker-compose.yml --env-file deploy/.env up -d
+#
+# Your MCP endpoint is then https://<DOMAIN>/mcp
+services:
+  commander:
+    build: ..
+    restart: unless-stopped
+    environment:
+      IMALI_MCP_TOKEN_SHA256: ${IMALI_MCP_TOKEN_SHA256:?set IMALI_MCP_TOKEN_SHA256 in deploy/.env}
+      # Remote access is a Pro feature; the license activates once and is kept in /data.
+      IMALI_LICENSE_KEY: ${IMALI_LICENSE_KEY:?set IMALI_LICENSE_KEY in deploy/.env (IMALI Commander Pro)}
+      IMALI_READ_ONLY: ${IMALI_READ_ONLY:-0}
+      IMALI_MAX_SESSIONS: ${IMALI_MAX_SESSIONS:-16}
+    volumes:
+      - ${IMALI_WORKSPACE_DIR:-./workspace}:/workspace
+      - commander-data:/data
+    expose:
+      - "8787"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - commander
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN in deploy/.env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  commander-data:
+  caddy-data:
+  caddy-config:

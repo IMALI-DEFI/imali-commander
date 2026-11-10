@@ -1,0 +1,34 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [22, 24]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t imali-commander .
+      - name: Container answers /health
+        run: |
+          # Free edition: listen inside the container only (remote access is a Pro feature).
+          docker run -d --name ic -e IMALI_MCP_TOKEN="$(openssl rand -hex 32)" -e IMALI_HOST=127.0.0.1 -e IMALI_ALLOW_REMOTE=0 imali-commander
+          for i in $(seq 1 30); do docker exec ic wget -qO- http://127.0.0.1:8787/health && exit 0; sleep 1; done
+          docker logs ic; exit 1

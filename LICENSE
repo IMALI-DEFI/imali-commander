@@ -1,0 +1,23 @@
+IMALI Commander License
+
+Copyright (c) 2026 IMALI-DEFI. All rights reserved.
+
+You may install and use IMALI Commander, free of charge, on any number of your
+own computers and servers, for personal or commercial work. Pro features
+require a valid IMALI Commander Pro license, available at
+https://api.imali-defi.com/commander/buy.
+
+The source code is published so you can audit what runs on your machine.
+You may read it and modify it for your own use, but you may not:
+
+  - redistribute, sublicense or sell the software or a modified version of it;
+  - remove, disable or work around the license checks for Pro features;
+  - offer the software, or a modified version, to others as a hosted service.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

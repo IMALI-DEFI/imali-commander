@@ -1,0 +1,9 @@
+node_modules/
+*.log
+*.tgz
+.DS_Store
+deploy/.env
+deploy/workspace/
+license-server/node_modules/
+license-server/data/
+license-server/scripts/deploy.local.env

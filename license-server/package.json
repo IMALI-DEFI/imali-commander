@@ -1,0 +1,18 @@
+{
+  "name": "imali-commander-license-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Stripe-backed license service for IMALI Commander Pro",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test"
+  },
+  "dependencies": {
+    "stripe": "^22.5.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

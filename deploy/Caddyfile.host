@@ -1,0 +1,24 @@
+# For a server without Docker: Commander runs as a service on 127.0.0.1:8787
+# (imali-commander service install --load) and Caddy on the same host adds HTTPS.
+# Also set "trustProxy": true in ~/.imali-commander/config.json (or IMALI_TRUST_PROXY=1)
+# so brute-force lockout sees real client addresses.
+commander.example.com {
+	encode gzip
+
+	@commander path /mcp /health
+	handle @commander {
+		reverse_proxy 127.0.0.1:8787 {
+			flush_interval -1
+		}
+	}
+
+	handle {
+		respond 404
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+}

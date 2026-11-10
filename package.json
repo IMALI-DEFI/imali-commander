@@ -1,0 +1,58 @@
+{
+  "name": "imali-commander",
+  "version": "1.2.0",
+  "description": "Self-hosted MCP server that gives AI assistants safe, scoped access to one folder on your computer or server.",
+  "mcpName": "io.github.IMALI-DEFI/imali-commander",
+  "homepage": "https://github.com/IMALI-DEFI/imali-commander#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IMALI-DEFI/imali-commander.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IMALI-DEFI/imali-commander/issues"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "bin": {
+    "imali-commander": "bin/imali-commander.js"
+  },
+  "main": "src/server.js",
+  "files": [
+    ".dockerignore",
+    "CHANGELOG.md",
+    "Dockerfile",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md",
+    "bin/",
+    "deploy/",
+    "server.json",
+    "src/"
+  ],
+  "scripts": {
+    "start": "node src/server.js",
+    "start:http": "IMALI_TRANSPORT=http node src/server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test"
+  },
+  "keywords": [
+    "ai",
+    "chatgpt",
+    "chatgpt-connector",
+    "claude",
+    "claude-desktop",
+    "file-access",
+    "filesystem",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "security",
+    "self-hosted"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.25.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

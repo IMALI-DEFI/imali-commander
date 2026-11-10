@@ -1,0 +1,53 @@
+# Publish a release: bump "version" in package.json and server.json, then
+#   git tag v1.2.3 && git push --tags
+# Publishes to npm (needs the NPM_TOKEN repo secret) and then to the official
+# MCP Registry (GitHub OIDC, no secret needed).
+name: Publish
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - run: npm ci
+      - run: npm test
+
+      - name: Versions must match
+        run: |
+          pkg=$(node -p "require('./package.json').version")
+          srv=$(node -p "require('./server.json').version")
+          [ "$pkg" = "$srv" ] || { echo "package.json $pkg != server.json $srv"; exit 1; }
+
+      - name: Publish to npm (skipped if this version is already published)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          v=$(node -p "require('./package.json').version")
+          if npm view "imali-commander@$v" version >/dev/null 2>&1; then
+            echo "imali-commander@$v already on npm"
+          else
+            npm publish --access public
+          fi
+
+      - name: Install mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Publish to the MCP Registry
+        run: |
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

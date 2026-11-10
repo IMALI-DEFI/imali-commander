@@ -1,0 +1,22 @@
+# Used by docker-compose.yml. Only /mcp and /health are reachable.
+{$DOMAIN} {
+	encode gzip
+
+	@commander path /mcp /health
+	handle @commander {
+		reverse_proxy commander:8787 {
+			# MCP streams responses; don't buffer them.
+			flush_interval -1
+		}
+	}
+
+	handle {
+		respond 404
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+}
