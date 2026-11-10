@@ -33,7 +33,7 @@ internet.
 Requires Node.js 20+.
 
 ```bash
-npm install -g imali-commander
+npm install -g github:IMALI-DEFI/imali-commander
 imali-commander init --workspace ~/imali-workspace
 ```
 
@@ -48,7 +48,7 @@ global install you can also run it through npx:
 ```json
 {
   "mcpServers": {
-    "imali-commander": { "command": "npx", "args": ["-y", "imali-commander", "start"] }
+    "imali-commander": { "command": "npx", "args": ["-y", "github:IMALI-DEFI/imali-commander", "start"] }
   }
 }
 ```

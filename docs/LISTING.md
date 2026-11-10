@@ -36,12 +36,12 @@ Keywords: mcp, mcp-server, filesystem, file access, claude desktop, chatgpt conn
 
 ## Install snippet
 ```bash
-npm install -g imali-commander
+npm install -g github:IMALI-DEFI/imali-commander
 imali-commander init --workspace ~/ai-workspace
 ```
 
 ```json
-{ "mcpServers": { "imali-commander": { "command": "npx", "args": ["-y", "imali-commander", "start"] } } }
+{ "mcpServers": { "imali-commander": { "command": "npx", "args": ["-y", "github:IMALI-DEFI/imali-commander", "start"] } } }
 ```
 
 ## How it compares (positioning, for your own use)
