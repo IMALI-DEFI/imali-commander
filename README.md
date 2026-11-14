@@ -1,5 +1,7 @@
 # IMALI Commander
 
+[![M8ven Verified](https://m8ven.ai/badge/mcp/imali-defi-imali-commander-1gnska?variant=verified&v=9a706585d236d0557aec0f6c39de2eed)](https://m8ven.ai/mcp/imali-defi-imali-commander-1gnska?s=readme)
+
 Give AI assistants (Claude Desktop, ChatGPT and any MCP client) safe access to
 **one folder** on your computer or server: read, write, upload, download,
 search, and check git status. Nothing outside that folder, no shell.
