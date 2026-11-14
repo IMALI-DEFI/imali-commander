@@ -2,12 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.IMALI-DEFI/imali-commander",
   "description": "Safe, scoped file access for AI assistants: one folder, no shell, audit log, read-only mode, remote HTTPS (Pro).",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "imali-commander",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "transport": {
         "type": "stdio"
       }

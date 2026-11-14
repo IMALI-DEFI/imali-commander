@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 - 2026-11-14
+
+- Security: upgrade zod to 4.6.7 (fixes GHSA-mrhx-c7xc-m3w5, high: memory
+  exhaustion while validating oversized constrained collections); `npm audit`
+  now reports 0 vulnerabilities
+
 ## 1.2.0 - 2026-11-03
 
 - Pro licensing moves to Stripe: buy at https://api.imali-defi.com/commander/buy,
