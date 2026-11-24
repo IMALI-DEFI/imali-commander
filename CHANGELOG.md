@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2 — 2026-11-24
+
+- Published to npm and the official MCP Registry: install with `npm install -g imali-commander` or `npx -y imali-commander start`.
+
 ## 1.2.1 - 2026-11-14
 
 - Security: upgrade zod to 4.6.7 (fixes GHSA-mrhx-c7xc-m3w5, high: memory
